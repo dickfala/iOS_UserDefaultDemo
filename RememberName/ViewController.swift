@@ -10,9 +10,24 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var textField: UITextField!
+    
+    @IBOutlet weak var messageLabel: UILabel!
+    
+    @IBAction func saveButton(_ sender: UIButton) {
+        
+        UserDefaults.standard.set(textField.text, forKey: "name")
+        messageLabel.text = "已儲存"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+     
+        let nameObject = UserDefaults.standard.object(forKey: "name")
+        if let name = nameObject as? String {
+            
+            textField.text = name
+        }
     }
 
     override func didReceiveMemoryWarning() {
